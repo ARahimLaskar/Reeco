@@ -7,7 +7,7 @@ export const NavBar = () => {
   const [showMenu, setShowMenu] = useState(false);
 
   useEffect(() => {
-    const mediaQuery = window.matchMedia("(max-width: 620px)");
+    const mediaQuery = window.matchMedia("(max-width: 780px)");
 
     const handleMediaQueryChange = (e) => {
       if (e.matches) {
