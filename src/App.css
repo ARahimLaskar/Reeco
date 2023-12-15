@@ -1,6 +1,5 @@
 #root {
   margin: 0 auto;
-  /* padding: 0 5rem; */
 }
 .nav {
   background-color: var(--primary-color);
@@ -9,6 +8,7 @@
 .order-list {
   max-width: 1280px;
   margin: 0 auto;
+  padding: 0 1rem;
 }
 .nav_container {
   max-width: 1280px;
@@ -16,7 +16,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1rem 0;
+  padding: 1rem;
   font-size: 2rem;
 }
 .menu_items {
@@ -25,13 +25,13 @@
   align-items: center;
 }
 #logo {
-  max-width: 100px;
+  max-width: 80px;
 }
 
 .navigation_box {
   display: flex;
   list-style: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   width: 100%;
   padding-left: 2rem;
   gap: 2rem;
@@ -60,7 +60,8 @@
 .order_container {
   max-width: 1280px;
   margin: 0 auto;
-  padding-bottom: 1rem;
+  padding: 1rem;
+  padding-top: 0;
 }
 .order_loop {
   display: flex;
@@ -68,7 +69,6 @@
   padding-top: 0.5rem;
 }
 #order_no {
-  /* text-decoration: underline; */
   border-bottom: 1px solid black;
   padding-bottom: 5px;
 }
@@ -76,14 +76,15 @@
 .order_actions {
   display: flex;
   justify-content: space-between;
+  align-items: center;
   padding: 1rem 0rem;
-  padding-top: 2rem;
 }
 
 /* active_order_container */
 
 .active_order_container {
   display: flex;
+  flex-wrap: wrap;
   border: 1px solid black;
   flex-wrap: wrap;
   padding: 1rem;
@@ -119,6 +120,7 @@
 .order_list_top {
   display: flex;
   justify-content: space-between;
+  gap: 1rem;
   align-items: center;
   margin: 1.5rem 0;
   margin-top: 2rem;
@@ -127,6 +129,10 @@
   display: flex;
   align-items: center;
   font-size: 2rem;
+}
+#order_head {
+  font-size: 2rem;
+  font-weight: 800;
 }
 .input_box {
   border: 1px solid black;
@@ -154,6 +160,7 @@
 .products-table {
   width: 100%;
   border-collapse: collapse;
+  margin-bottom: 2rem;
 }
 .products-table th,
 .products-table td {
@@ -165,7 +172,7 @@
 }
 .products-table th:nth-child(2),
 .products-table td:nth-child(2) {
-  width: 25%; /* Set the width of the 2nd column to 40% */
+  width: 25%;
 }
 .products-table th:not(:nth-child(2)),
 .products-table td:not(:nth-child(2)) {
@@ -176,11 +183,18 @@
   width: 5%;
 }
 
+/* edit modal */
+#brand-name {
+  font-weight: 400;
+  font-size: 1.2rem;
+  color: rgb(148, 144, 144);
+}
+
 .price_quantity_total {
   display: table-row;
 }
 .price_quantity_total td {
-  padding: 0.5rem;
+  padding: 0.8rem;
 }
 .price_quantity_total tr td:first-child {
   padding-right: 5rem;
@@ -190,8 +204,9 @@
 }
 .price_quantity_total tr td > p span {
   border: 1px solid gray;
-  padding: 0 0.5rem;
+  padding: 0.4rem 1rem;
   border-radius: 6px;
+  margin: 0 0.6rem;
 }
 .plus_minus {
   background-color: green;
@@ -207,18 +222,43 @@
   font-weight: 600;
   padding: 0.2rem;
 }
+#quantity {
+  margin-left: 0.6rem;
+}
+.price_quantity_total tr td:first-child {
+  font-weight: 500;
+}
+#reason {
+  font-weight: 600;
+}
+#reason span {
+  font-weight: 400;
+  color: rgb(152, 147, 147);
+}
 .reason-section {
   display: flex;
-  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.6rem;
 }
 .reason-section p {
-  border: 1px solid gray;
+  border: 1px solid rgb(162, 158, 158);
   border-radius: 1rem;
   padding: 0.2rem 0.6rem;
-  font-size: 0.9rem;
+  font-size: 0.8rem;
+  color: rgb(163, 158, 158);
+  margin-top: 0.5rem;
+}
+@media (max-width: 980px) {
+  body {
+    font-size: 90%;
+  }
+  .active_order_container > div > p:nth-child(2) {
+    font-weight: 600;
+    font-size: 1rem;
+  }
 }
 
-@media (max-width: 620px) {
+@media (max-width: 780px) {
   #navlinks {
     display: none;
   }
@@ -243,5 +283,49 @@
     gap: 0;
     line-height: 2;
     background-color: var(--primary-color);
+  }
+  .active_order_container > div {
+    width: calc(33.33% - 1rem);
+    margin-right: 1rem;
+    margin-bottom: 1rem;
+  }
+
+  .active_order_container > div:nth-child(-n + 3) {
+    flex: 1 0 calc(33.33% - 1rem);
+    margin-right: 1rem;
+  }
+  .active_order_container > div:nth-child(4) {
+    border-left: none;
+  }
+  #order_head {
+    font-size: 1.8rem;
+    font-weight: 800;
+  }
+  /* Apply styles to the table */
+  .products-table1 {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 2rem;
+  }
+
+  /* Apply styles to table cells */
+  .products-table1 td {
+    border-bottom: 1px solid black;
+    padding: 1rem;
+    text-align: left;
+    display: flex;
+    justify-content: space-between;
+  }
+  .products-table1 img {
+    margin: auto;
+  }
+  .products-table1 td span {
+    font-weight: 600;
+  }
+}
+@media (max-width: 480px) {
+  #order_head {
+    font-size: 1.5rem;
+    font-weight: 800;
   }
 }

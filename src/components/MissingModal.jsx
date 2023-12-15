@@ -8,7 +8,6 @@ import {
   AlertDialogOverlay,
   AlertDialogCloseButton,
   Button,
-  useDisclosure,
 } from "@chakra-ui/react";
 import { useDispatch } from "react-redux";
 import { updateStatus } from "../Redux/productsSlice";

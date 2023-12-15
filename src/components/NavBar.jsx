@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 export const NavBar = () => {
   const [toggleMenu, setToggleMenu] = useState(false);
   const [showMenu, setShowMenu] = useState(false);
+
   useEffect(() => {
     const mediaQuery = window.matchMedia("(max-width: 620px)");
 
@@ -18,18 +19,20 @@ export const NavBar = () => {
 
     handleMediaQueryChange(mediaQuery);
 
-    mediaQuery.addListener(handleMediaQueryChange); // Add listener for changes
+    mediaQuery.addListener(handleMediaQueryChange);
 
     return () => {
-      mediaQuery.removeListener(handleMediaQueryChange); // Clean up the listener on unmount
+      mediaQuery.removeListener(handleMediaQueryChange); // Cleaning up the listener on unmount
     };
   }, []);
+
   const handleClose = () => {
     setToggleMenu(false);
   };
   const handleOpen = () => {
     setToggleMenu(true);
   };
+
   return (
     <div className="nav">
       <nav class="nav_container">

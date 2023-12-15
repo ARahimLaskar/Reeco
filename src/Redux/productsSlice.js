@@ -1,20 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 import data from "../db.json";
 
-const loadDataFromLocalStorage = () => {
-  try {
-    const data = localStorage.getItem("myData");
-    if (data) {
-      return JSON.parse(data);
-    }
-  } catch (error) {
-    console.error("Error loading data from localStorage:", error);
-  }
-  return [];
-};
-
 const initialState = {
   data: JSON.parse(localStorage.getItem("foodData")) || data,
+  selectedItem: null,
 };
 
 const productReducer = createSlice({
@@ -22,6 +11,9 @@ const productReducer = createSlice({
   initialState,
   reducers: {
     addProducts: () => {},
+    updateSelectedItem: (state, action) => {
+      state.selectedItem = action.payload;
+    },
     updateStatus: (state, action) => {
       const { id, status } = action.payload;
       const itemIndex = state.data.findIndex((e) => e.id === id);
@@ -43,9 +35,34 @@ const productReducer = createSlice({
         localStorage.setItem("foodData", JSON.stringify(state.data));
       }
     },
+    updateQuantityAndPrice: (state, action) => {
+      const { id, quantity } = action.payload;
+      const itemIndex = state.data.findIndex((e) => e.id === id);
+
+      if (itemIndex !== -1) {
+        const item = state.data[itemIndex];
+        const price = parseFloat(item.price);
+        const newQuantity = parseInt(quantity);
+        const newTotal = (price * newQuantity).toFixed(2);
+
+        state.data[itemIndex] = {
+          ...item,
+          quantity: newQuantity.toString(),
+          total: newTotal,
+          status: "Quantity updated",
+        };
+        state.selectedItem = { ...state.data[itemIndex] };
+        localStorage.setItem("foodData", JSON.stringify(state.data));
+      }
+    },
   },
 });
 
-export const { addProducts, updateProducts, updateStatus } =
-  productReducer.actions;
+export const {
+  addProducts,
+  updateSelectedItem,
+  updateProducts,
+  updateStatus,
+  updateQuantityAndPrice,
+} = productReducer.actions;
 export default productReducer.reducer;
